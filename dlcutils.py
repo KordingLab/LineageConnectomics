@@ -1,6 +1,4 @@
 import networkx as nx
-
-# from mossdb.client import MossDBClient
 import numpy as np
 
 import json
@@ -16,7 +14,7 @@ class Config:
         # Relabel the nodes with the `name` attribute:
         return nx.relabel_nodes(lin, {n: a["name"] for n, a in lin.nodes(data=True)})
 
-    def get_connectome():
+    def get_connectome(debug: bool = False):
         if _USING_REMOTE_DB:
             fh = io.BytesIO(
                 MossDBClient("http://mossdb").get_file(
@@ -31,7 +29,8 @@ class Config:
             try:
                 c.nodes[n]["location"] = locations[n]
             except KeyError:
-                print(f"Could not find location for neuron [{n}].")
+                if debug:
+                    print(f"Could not find location for neuron [{n}].")
         return c
 
     def get_cell_locations_map():
@@ -72,6 +71,28 @@ class Config:
             return len(
                 set(connectome.successors(source)).intersection(
                     connectome.successors(target)
+                )
+            )
+        except Exception as e:
+            return np.nan
+
+    def distance_common_predecessors(connectome: nx.DiGraph, source: str, target: str):
+        """
+        Return the number of common predecessors between two nodes in a connectome graph.
+
+        Arguments:
+            connectome (nx.DiGraph): The target graph
+            source (str): The source node
+            target (str): The target node
+
+        Returns:
+            int: The number of common predecessors between the source and target nodes
+
+        """
+        try:
+            return len(
+                set(connectome.predecessors(source)).intersection(
+                    connectome.predecessors(target)
                 )
             )
         except Exception as e:
