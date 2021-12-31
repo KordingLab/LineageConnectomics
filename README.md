@@ -25,9 +25,8 @@ copy(JSON.stringify(...));
 Or by calling the `getJson()` function on [this page](http://wormweb.org/celllineage):
 
 ```js
-copy(JSON.stringify(getJson()))
+copy(JSON.stringify(getJson()));
 ```
-
 
 ### Cell Locations
 
@@ -38,3 +37,7 @@ The script to accomplish this is stored in `preprocessing/get-blender-centroids.
 You can download the source material from [this website](http://canopus.caltech.edu/virtualworm/Virtual%20Worm%20Blend%20File/).
 
 We use the latest Feb 2012 version.
+
+### Usage
+
+To create the figures in `figs/`, the `Analysis.ipynb` notebook is run twice; first with the `NULL_MODEL` parameter set to `True`, and then with the `NULL_MODEL` parameter set to `False`. This creates `fig-grouped-distance-null.svg` and `fig-grouped-distance.svg` in `figs/`
