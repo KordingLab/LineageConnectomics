@@ -1,5 +1,7 @@
 # Lineage Connectomics
 
+Read the preprint: https://www.biorxiv.org/content/10.1101/2022.11.01.514680v1
+
 Watch our NeuroMatch 4.0 Talk!
 
 [![YouTube Link to Talk](https://user-images.githubusercontent.com/693511/144762457-0e3b543b-957b-4d99-890d-421a69ccff77.png)](http://www.youtube.com/watch?v=fEv94br2V00 "NeuroMatch 4.0: Predicting the connectome with neuron family trees — Jordan Matelsky")
